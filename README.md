@@ -12,9 +12,9 @@ Clone the repo locally.
 
 Within geth (preferably on a private test net), generate 2 new addresses that the contract can use for splitting.
 
-Make sure that `eth accounts` shows your addresses.
+Make sure that `eth.accounts` shows your addresses.
 
-Edit the ether-coinsplit.js file, replacing the addresses in the `_recipients` array and save this file.
+Edit the *ether-coinsplit.js* file, replacing the addresses in the `_recipients` array and save this file.
 
 Navigate to the innermost ether-coinsplit folder
 
@@ -32,9 +32,9 @@ If successful, meteor will give you an address similar to this:
 
 Go there in your browser and the app should load.
 
-First open the web console and then click the button which says "Click Me"
+First open the web console in your browser and then click the button which says "Click Me"
 
-Once mined, the contract address and ABI should show. You can then use these to hook up to the contract
+Once mined, the contract address and ABI should show in the console. You can then use these to hook up to the contract
 
 From within geth, run the following commands to send 2 ether to the contract. These will be split among the 2 addresses:
 
