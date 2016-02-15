@@ -4,12 +4,25 @@ if (Meteor.isClient) {
   var splitterSource = 'contract splitter {    address[2] recipients;   event donation(address _from, uint _amount);    function splitter(address[2] _recipients) public {   recipients = _recipients;  }   function getAddresses() constant returns (address[2]) {   return recipients;  }   function donate() public {    recipients[0].send(msg.value / 2);   recipients[1].send(msg.value / 2);   }  } ';
   var splitterCompiled = web3.eth.compile.solidity(splitterSource);
 
+  Session.set("notice", undefined);
+  Session.set("isConnected",web3.isConnected());
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  Template.notice.helpers({
+    hostName: function(){
+      url = "http://"
+      if(window.location.port){
+        return url + window.location.hostname + ":" + window.location.port
+      }else{
+        return url + window.location.hostname
+      }
+    },
+    notConnected: function(){
+      return !Session.get("isConnected")
+    },
+    notice: function(){
+      return Session.get("notice");
     }
-  });
+  })
 
   Template.hello.events({
     'click button': function () {
@@ -24,10 +37,11 @@ if (Meteor.isClient) {
 
           if(!contract.address) {
             console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
+            Session.set("notice", "Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
 
           } else {
             console.log("Contract mined! Address: " + contract.address);
-            console.log(contract);
+            Session.set("notice", "Contract mined! Address: " + contract.address + "       ABI: " + JSON.stringify(contract.abi));
             console.log(JSON.stringify(contract.abi));
           }
 
