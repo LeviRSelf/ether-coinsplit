@@ -21,3 +21,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 ethereum:web3
 less
 ethereum:dapp-styles
+frozeman:persistent-minimongo2

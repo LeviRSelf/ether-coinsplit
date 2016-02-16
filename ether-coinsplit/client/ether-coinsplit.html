@@ -6,20 +6,12 @@
 <header class="dapp-header">
 	<nav>
 	    <ul>
-	        <li>
-	            <a href="#">
-	                <i class="icon-arrow-up2"></i>
-	                <span>Generate</span>
-	            </a>
-	            <a href="#">
-	                <i class="icon-arrow-up2"></i>
-	                <span>Deploy</span>
-	            </a>
-	            <a href="#">
-	                <i class="icon-arrow-up2"></i>
-	                <span>Send</span>
-	            </a>
-	        </li>
+        {{> controlbuttons }}
+
+        {{#if notConnected}}
+          You are not connected to Geth.
+          Make sure you start geth with at least --rpc --rpcaddr="localhost" --rpcport="8080" --rpccorsdomain="{{ hostName }}"
+        {{/if}}
 	    </ul>
 	</nav>
 </header>
@@ -28,49 +20,12 @@
 
     <!-- aside -->
     <aside class="dapp-aside">
-	<div>
-		<input type="text" name="addr1" placeholder = "Recipient Address 1">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>
-	<div>
-		<input type="text" name="addr2" placeholder = "Recipient Address 2">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>
-	<div>
-		<input type="text" name="addr3" placeholder = "Recipient Address 3">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>	
-	<div>
-		<input type="text" name="addr4" placeholder = "Recipient Address 4">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>	
-	<div>		
-		<input type="text" name="addr5" placeholder = "Recipient Address 5">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>	
-	<div>
-		<input type="text" name="addr6" placeholder = "Recipient Address 6">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>	
-	<div>
-		<input type="text" name="addr7" placeholder = "Recipient Address 7">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>	
-	<div>
-		<input type="text" name="addr8" placeholder = "Recipient Address 8">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>	
-	<div>
-		<input type="text" name="addr9" placeholder = "Recipient Address 9">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>	
-	<div>
-		<input type="text" name="addr10" placeholder = "Recipient Address 10">
-		<input type="number" min="0" max="100" step="0.1" value="0">
-	</div>
-	<div>
-		<input type="number" readonly value="0">
-	</div>
+      {{#each recipients}}
+        {{> recipient}}
+      {{/each}}
+        <div>
+            <input id="total" type="number" readonly value="{{total}}">
+        </div>
     </aside>
 
     <!-- content-->
@@ -127,7 +82,6 @@
     </div>
   </div> 
 
-  {{> hello }}
   {{> notice }}   
     </main>
 
@@ -141,12 +95,32 @@
 
 </body>
 
-<template name="hello">
-  <button>Generate Contract</button>
+<template name="controlbuttons">
+<li>
+    <a href="#">
+        <i class="icon-arrow-up2"></i>
+        <span class="generate-contract-btn">Generate</span>
+    </a>
+    <a href="#">
+        <i class="icon-arrow-up2"></i>
+        <span class="deploy-contract-btn">Deploy</span>
+    </a>
+    <a href="#">
+        <i class="icon-arrow-up2"></i>
+        <span class="send-tx-btn">Send</span>
+    </a>
+</li>
 </template>
 
 <template name="notice">
   {{#if notice }}
     <p>{{ notice }}</p>
   {{/if}}
+</template>
+
+<template name="recipient">
+    <div>
+        <input type="text" name="addr1" placeholder = "{{placeholder}}">
+        <input type="number" min="0" max="100" step="0.1" value="{{share}}">
+    </div>
 </template>
