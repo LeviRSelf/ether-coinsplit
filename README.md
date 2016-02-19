@@ -1,5 +1,7 @@
 # ether-coinsplit
 
+[Live Demo](http://ethersplit.meteor.com/)
+
 ## Usage:
 
 Install Meteor if needed
