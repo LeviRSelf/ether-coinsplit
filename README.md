@@ -10,11 +10,9 @@ $ curl https://install.meteor.com/ | sh
 
 Clone the repo locally.
 
-Within geth (preferably on a private test net), generate 2 new addresses that the contract can use for splitting.
+Within geth (preferably on a private test net), generate at least 2 addresses that the contract can use for splitting.
 
 Make sure that `eth.accounts` shows your addresses.
-
-Edit the *ether-coinsplit.js* file, replacing the addresses in the `_recipients` array and save this file.
 
 Navigate to the innermost ether-coinsplit folder
 
@@ -32,11 +30,15 @@ If successful, meteor will give you an address similar to this:
 
 Go there in your browser and the app should load.
 
-First open the web console in your browser and then click the button which says "Click Me"
+Enter addresses and shares (from 0 to 100) on the left navbar. When the donate() method in the contract is run, any payments sent to the contract will be split among these addresses using the proportions specified.
 
-Once mined, the contract address and ABI should show in the console. You can then use these to hook up to the contract
+Click Generate to compile the contract. If successful, a message should show in the Results box (lower-right) indicating compilation was successful.
 
-From within geth, run the following commands to send 2 ether to the contract. These will be split among the 2 addresses:
+Once compilation succeeds, you can click Deploy to push the contract to your network (currently only geth nodes running locally are supported. Mist support is on the todo list.)
+
+The 'Send' button does nothing for now. Soon it will allow sending to existing contracts. For now payments can be sent manually from within a Geth console:
+
+From within Geth, run the following commands to send 2 ether to the contract. These will be split among the addresses you chose. You will need to record the ABI and contract address from the corresponding windows in the app:
 
 ```
 var splitteraddr = 'YOUR_CONTRACT_ADDRESS';
