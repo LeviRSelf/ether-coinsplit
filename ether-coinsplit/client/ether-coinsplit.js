@@ -109,7 +109,7 @@ if (Meteor.isClient) {
         console.log(splitterSource);
         console.log(compiledContract);
         console.log(abiDefinition);
-      }`
+      }
 
     },
     'click .deploy-contract-btn': function () {
