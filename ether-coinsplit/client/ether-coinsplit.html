@@ -36,53 +36,55 @@
   <div class="row clear">
     <div class="col col-1-2 tablet-col-1-2 mobile-col-1-2">
         <span class="no-tablet no-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{sourcebox}}</textarea>
         </span>
         <span class="no-desktop show-tablet no-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{sourcebox}}</textarea>
         </span>
         <span class="no-desktop no-tablet show-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{sourcebox}}</textarea>
         </span>
     </div>
     <div class="col col-1-2 tablet-col-1-2 mobile-1-2">
         <span class="no-tablet no-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{varbox}}</textarea>
         </span>
         <span class="no-desktop show-tablet no-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{varbox}}</textarea>
         </span>
         <span class="no-desktop no-tablet show-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{varbox}}</textarea>
         </span>
     </div>
   </div>  
   <div class="row clear">
     <div class="col col-1-2 tablet-col-1-2 mobile-col-1-2">
         <span class="no-tablet no-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{abibox}}</textarea>
         </span>
         <span class="no-desktop show-tablet no-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{abibox}}</textarea>
         </span>
         <span class="no-desktop no-tablet show-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{abibox}}</textarea>
         </span>
     </div>
     <div class="col col-1-2 tablet-col-1-2 mobile-1-2">
         <span class="no-tablet no-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{resultbox}}</textarea>
         </span>
         <span class="no-desktop show-tablet no-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{resultbox}}</textarea>
         </span>
         <span class="no-desktop no-tablet show-mobile">
-        	<textarea name="textarea" readonly rows="10" cols="50"></textarea>
+        	<textarea name="textarea" readonly rows="10" cols="50">{{resultbox}}</textarea>
         </span>
     </div>
   </div> 
 
-  {{> notice }}   
+  {{#if notice }}
+    <p>{{ notice }}</p>
+  {{/if}}
     </main>
 
 
@@ -112,15 +114,9 @@
 </li>
 </template>
 
-<template name="notice">
-  {{#if notice }}
-    <p>{{ notice }}</p>
-  {{/if}}
-</template>
-
 <template name="recipient">
     <div>
-        <input type="text" name="addr1" placeholder = "{{placeholder}}">
+        <input type="text" id="addr{{number}}" placeholder = "Recipient Address {{number}}">
         <input type="number" min="0" max="100" step="0.1" value="{{share}}">
     </div>
 </template>
